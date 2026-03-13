@@ -423,4 +423,134 @@ $ git commit -m " add branching notes"
  1 file changed, 103 insertions(+), 14 deletions(-)
 ```
 
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        reports/README.md
+        reports/lab1_backup.md
+```
+Когда я переключаюсь на ветку lab1-1, файл README.md, который ещё не добавлен в Git (untracked), переносится вместе со мной в новую ветку. Это происходит потому, что Git не отслеживает такие файлы и не привязывает их к конкретной ветке, поэтому они остаются в рабочей директории независимо от того, на какой ветке я нахожусь.
 
+
+# ЭТАП 6
+### Слияние веток, конфликты
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git add README.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git status
+On branch lab1-1
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   reports/lab1.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git restore --staged README.md
+bash: $'\302\223git': command not found
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git restore --staged README.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git status
+On branch lab1-1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   reports/lab1.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git checkout main
+error: Your local changes to the following files would be overwritten by checkout:
+        reports/lab1.md
+Please commit your changes or stash them before you switch branches.
+Aborting
+```
+Я использовала `git stash` чтобы временно отложить незавершённые 
+изменения в файле `reports/lab1.md`, свободно переключиться на ветку 
+`main` для слияния, а затем восстановила изменения с помощью 
+`git stash pop` там, где я остановилась.
+
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git stash
+Saved working directory and index state WIP on lab1-1: a878f08  new changes
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git checkout main
+Switched to branch 'main'
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git merge lab1-1
+Updating 641a059..a878f08
+Fast-forward
+ reports/lab1.md | 131 ++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 117 insertions(+), 14 deletions(-)
+
+ Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git log --oneline
+a878f08 (HEAD -> main, lab1-1)  new changes
+af43e9a  add branching notes
+641a059 updated lab1
+303db03 commit reports/lab1.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git add README.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git commit -m "Update README title"
+[main a27827c] Update README title
+ 1 file changed, 10 insertions(+)
+ create mode 100644 README.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git checkout lab1-1
+Switched to branch 'lab1-1'
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git stash pop
+On branch lab1-1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   reports/lab1.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (77a9b69f8e846b3c236f87c02163e8f3440c8535)
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git status
+On branch lab1-1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   reports/lab1.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
