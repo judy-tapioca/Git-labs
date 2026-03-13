@@ -265,7 +265,7 @@ index 0000000..8a69538
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git diff README.md
 ```
-
+```bash
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git diff --cached README.md
 diff --git a/README.md b/README.md
@@ -284,7 +284,7 @@ index 0000000..bbecb77
 \ No newline at end of file
 ```
 
-
+```bash
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   README.md
@@ -311,7 +311,7 @@ $ git commit -m "commit reports/lab1.md"
 [main (root-commit) 303db03] commit reports/lab1.md
  1 file changed, 267 insertions(+)
  create mode 100644 reports/lab1.md
-
+```
 
 
 
@@ -379,9 +379,9 @@ Untracked files:
         reports/lab1_backup.md
 
 nothing added to commit but untracked files present (use "git add" to track)
+
 ```
  Команда `git restore README.md` возвращает файл к состоянию последнего коммита, удаляя все внесённые изменения. По сути, это откатывает файл так, как будто никакие новые строки или правки никогда не добавлялись, похоже на использование Отменить (Ctrl+Z) для всего документа сразу.
-  
   Я сохранила изменения перед восстановлением, в результате чего потеряла обновленный отчет.
 
 # ЭТАП 5
