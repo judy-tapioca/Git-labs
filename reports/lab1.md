@@ -316,7 +316,6 @@ $ git commit -m "commit reports/lab1.md"
 
 
 # ЭТАП 4
-
 ### Откат изменений
 
 ```bash
@@ -747,5 +746,88 @@ af43e9a  add branching notes
 641a059 updated lab1
 303db03 commit reports/lab1.md
 
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git add reports/lab1.md
+bash: $'\302\223\302\223git': command not found
 
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git add report/lab.md
+fatal: pathspec 'report/lab.md' did not match any files
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git add reports/lab1.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git commit -m "add git log history to report"
+[main 73a7a40] add git log history to report
+ 1 file changed, 80 insertions(+), 6 deletions(-)
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git log
+commit 73a7a40828990de4601f0b36f4334c58c3d34f34 (HEAD -> main)
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 19:33:24 2026 +0300
+
+    add git log history to report
+
+commit 6dd50c32a2d02d5e8d4a467526ba1ea1f937ab9d (origin/main, origin/HEAD)
+Merge: 3d39370 3509625
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 19:02:40 2026 +0300
+
+    resolve merge conflict
+
+commit 3d393702c4819a71b665d6211530b279567b45a3
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 18:57:47 2026 +0300
+
+     Updated report
+
+commit 35096256aaca9a142ed3a1afefbc37bacdc21cc0
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 18:49:41 2026 +0300
+
+     add cloning notes to report
+
+commit afcea046d81ffe68f1ca41952a26c3597f359447 (M)
+Merge: a27827c 47e8740
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 16:13:07 2026 +0300
+
+    Resolving merge conflict in README
+
+commit 47e87405157918d32400d87e6aa2c4010d4d8940
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 15:43:52 2026 +0300
+
+    Upated and report and README in lab1-1
+
+commit a27827cba9478aa2448e49a048d7e0d0f7d58662
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 14:55:21 2026 +0300
+
+    Update README title
+
+commit a878f08b496ecffa775fc79acea37bf1f0b83e98
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 12:57:38 2026 +0300
+
+     new changes
+
+commit af43e9af14952a59c85efebc439d7efdb763a1ff
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 12:43:40 2026 +0300
+
+     add branching notes
+
+commit 641a059b69c7f496079df00a7fe3dc2e3da5b68f
+Author: Judy Banda <judybanda19@gmail.com>
+Date:   Fri Mar 13 04:33:50 2026 +0300
+
+    updated lab1
+
+commit 303db0399be28b411806fbb59c3465f6d54f216d
+:
+```
 
