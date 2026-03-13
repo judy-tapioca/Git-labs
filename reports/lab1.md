@@ -601,10 +601,7 @@ $ git branch
 ```
 Я разрешила конфликты в файле README.md, сохранил нужные изменения, добавил файл в индекс и сделал коммит, чтобы завершить слияние. После того как убедился, что все изменения из ветки lab1-1 были включены в main, я удалил ветку lab1-1 с помощью команды `git branch -d lab1-1.`
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 35096256aaca9a142ed3a1afefbc37bacdc21cc0
 # ЭТАП 7
 ### Работа с удаленным репозиторием
 ```bash
@@ -666,12 +663,89 @@ Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs-clone
 $ cd Git-labs
 
 ```
+```bash
 mkdir Git-labs-clone — создала новую папку вне репозитория
 - cd Git-labs-clone — вошла в новую папку
 - git clone — клонировала репозиторий с GitHub
 - Все файлы совпадают с оригинальным репозиторием.
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 35096256aaca9a142ed3a1afefbc37bacdc21cc0
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git add reports/lab1.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git commit -m " Updated report"
+[main 3d39370]  Updated report
+ 1 file changed, 115 insertions(+)
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git pull origin main
+From https://github.com/judy-tapioca/Git-labs
+ * branch            main       -> FETCH_HEAD
+Auto-merging reports/lab1.md
+CONFLICT (content): Merge conflict in reports/lab1.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+**Решение:**
+
+```bash
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main|MERGING)
+$ git add reports/lab1.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main|MERGING)
+$ git commit -m "resolve merge conflict "
+[main 6dd50c3] resolve merge conflict
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git push
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (8/8), 805 bytes | 161.00 KiB/s, done.
+Total 8 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To https://github.com/judy-tapioca/Git-labs.git
+   3509625..6dd50c3  main -> main
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+```
+`git fetch` безопасно загружает новые изменения с GitHub на ваш 
+компьютер, не затрагивая локальные файлы — давая возможность 
+просмотреть изменения перед слиянием
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git fetch
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 1), reused 4 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 1.84 KiB | 49.00 KiB/s, done.
+From https://github.com/judy-tapioca/Git-labs
+   afcea04..3509625  main       -> origin/main
+```
+
+### История изменений
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git log --oneline
+6dd50c3 (HEAD -> main, origin/main, origin/HEAD) resolve merge conflict
+3d39370  Updated report
+3509625  add cloning notes to report
+afcea04 (M) Resolving merge conflict in README
+47e8740 Upated and report and README in lab1-1
+a27827c Update README title
+a878f08  new changes
+af43e9a  add branching notes
+641a059 updated lab1
+303db03 commit reports/lab1.md
+
+
+
