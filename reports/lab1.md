@@ -553,4 +553,115 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main|MERGING)
+$ git commit -m "Resolving merge conflct in README
+> git commit -m "Resolving merge conflict in README"
+> $ git commit -m Resolving merge conflict in README"
+fatal: cannot do a partial commit during a merge.
+
 ```
+ **Решение:**
+
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main|MERGING)
+$ git commit -m "Resolving merge conflict in README"
+[main afcea04] Resolving merge conflict in README
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git log --online
+fatal: unrecognized argument: --online
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git log --oneline
+afcea04 (HEAD -> main) Resolving merge conflict in README
+47e8740 (lab1-1) Upated and report and README in lab1-1
+a27827c Update README title
+a878f08  new changes
+af43e9a  add branching notes
+641a059 updated lab1
+303db03 commit reports/lab1.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git branch -d lab1-1
+bash: $'\302\223git': command not found
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git branch -d lab1-1
+Deleted branch lab1-1 (was 47e8740).
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git branch
+* main
+```
+Я разрешила конфликты в файле README.md, сохранил нужные изменения, добавил файл в индекс и сделал коммит, чтобы завершить слияние. После того как убедился, что все изменения из ветки lab1-1 были включены в main, я удалил ветку lab1-1 с помощью команды `git branch -d lab1-1.`
+
+# ЭТАП 7
+### Работа с удаленным репозиторием
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git remote add origin https://github.com/judy-tapioca/Git-labs.git
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git branch M main
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git push -u origin main
+Enumerating objects: 27, done.
+Counting objects: 100% (27/27), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (27/27), 7.73 KiB | 494.00 KiB/s, done.
+Total 27 (delta 7), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (7/7), done.
+To https://github.com/judy-tapioca/Git-labs.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+```
+# ЭТАП 8
+### Синхронизация с удаленным репозиторием
+
+ Клонирование в Git — это создание полной копии удалённого репозитория на локальном компьютере с помощью команды `git clone`. При клонировании Git загружает все файлы проекта, полную историю коммитов и информацию о ветках из удалённого репозитория. Это позволяет работать с проектом локально, вносить изменения, создавать коммиты и позже синхронизировать эти изменения с удалённым репозиторием.
+
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ cd ..
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~
+$ mkdir Git-labs-clone
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~
+$ cd Git-labs-colone
+bash: cd: Git-labs-colone: No such file or directory
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~
+$ cd Git-labs-clone
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs-clone
+$ git clone https://github.com/judy-tapioca/Git-labs.git
+Cloning into 'Git-labs'...
+remote: Enumerating objects: 27, done.
+remote: Counting objects: 100% (27/27), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 27 (delta 7), reused 27 (delta 7), pack-reused 0 (from 0)
+Receiving objects: 100% (27/27), 7.73 KiB | 719.00 KiB/s, done.
+Resolving deltas: 100% (7/7), done.
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs-clone
+$ ls
+Git-labs/
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs-clone
+$ cd Git-labs
+
+```
+mkdir Git-labs-clone — создала новую папку вне репозитория
+- cd Git-labs-clone — вошла в новую папку
+- git clone — клонировала репозиторий с GitHub
+- Все файлы совпадают с оригинальным репозиторием.
