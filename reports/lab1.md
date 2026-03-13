@@ -265,3 +265,59 @@ index 0000000..bbecb77
 + Date: 12/03/2026
 \ No newline at end of file
 ```
+
+```bash
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md
+        new file:   reports/lab1.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git rm --cached README.md
+rm 'README.md'
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   reports/lab1.md
+
+```
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git commit -m "commit reports/lab1.md"
+[main (root-commit) 303db03] commit reports/lab1.md
+ 1 file changed, 267 insertions(+)
+ create mode 100644 reports/lab1.md
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+bash: $'\302\223git': command not found
+
+
+ЭТАП 4
+
+### Откат изменений
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   reports/lab1.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+
+
