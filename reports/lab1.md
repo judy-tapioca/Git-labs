@@ -1,6 +1,6 @@
 # Отчет по лабораторной работе №1
 
-ЭТАП 1
+# ЭТАП 1
 ### Установка и настройка
 
 **Команды:**
@@ -28,6 +28,9 @@ $ git config --global user.email "judybanda19@gmail.com"
 user.name — ваше имя, которое отображается в каждом коммите.
 
 user.email — ваша электронная почта, которая отображается в каждом коммите.
+
+Выполнение команды `git config --global user.name "Ваше имя"`
+настраивает идентификатор пользователя. Это необходимо, поскольку каждый коммит **Git** использует эту информацию для идентификации автора изменений.
 
 $ git --help
 
@@ -81,8 +84,11 @@ concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
 See 'git help git' for an overview of the system.
 
+`git --help`. Это встроенная шпаргалка **Git**. Она показывает список наиболее важных команд, которые программист использует каждый день.Она поможет вам быстро вспомнить, как начать работу, сохранить изменения, работать онлайн.
 
-ЭТАП 2
+источник [git](https://git-scm.com/docs)
+
+# ЭТАП 2
 
 ### Начало работы с новым проектом
 
@@ -120,10 +126,19 @@ Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs/reports
 $ start reports/lab1.mds
 ```
 
-**Описание:**
+Команда `mkdir Git-labs` создаёт новую папку с именем Git-labs, cd Git-labs переходит в эту папку, `touch README.md` создаёт пустой файл README.md, `mkdir reports` создаёт папку reports, `touch reports/lab1.md` создаёт пустой файл lab1.md внутри папки reports, ls показывает файлы и папки в текущем каталоге, cd reports переходит в папку reports, а `ls` отображает содержимое этой папки.
 
+Markdown — это простой язык форматирования, используемый для написания и форматирования текста с помощью обычных текстовых символов, часто для таких документов, как файлы README, отчеты и документация.
 
-ЭТАП 3
+- Заголовки: подойти с помощью решетки `#` (чем больше решеток, тем меньше заголовок).
+- Списки: обычные пункты через дефис `-` или звездочку `*`, нумерованные — через цифру с точкой 1..
+- Выделение: `**жирный текст**` и `*курсив*`.
+- Код: одна обратная кавычка (`) для отображения команды внутри строк и три кавычки (```) для целых блоков кода.
+- Ссылки: текст пишется в квадратных скобках, ссылка — в круглых сразу за ними: `[Текст](ссылка)`.
+
+источник [Markdown Guide](https://www.markdownguide.org/)
+
+# ЭТАП 3
 ### Отслеживание состояния кода
 
 **Команды:**
@@ -163,10 +178,11 @@ $
 на этом этапе еще не отслеживались.
 
 **Команды:**
-
+```bash
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git add .
-
+```
+```bash
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git status
 On branch main
@@ -177,10 +193,12 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   README.md
         new file:   reports/lab1.md
+```
 
-
+```bash
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git diff --cached reports/lab1.md
+```
 diff --git a/reports/lab1.md b/reports/lab1.md
 new file mode 100644
 index 0000000..8a69538
@@ -266,7 +284,7 @@ index 0000000..bbecb77
 \ No newline at end of file
 ```
 
-```bash
+
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   README.md
@@ -287,25 +305,24 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   reports/lab1.md
 
-```
+
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git commit -m "commit reports/lab1.md"
 [main (root-commit) 303db03] commit reports/lab1.md
  1 file changed, 267 insertions(+)
  create mode 100644 reports/lab1.md
 
-Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
-$ git status
-bash: $'\302\223git': command not found
 
 
-ЭТАП 4
+
+# ЭТАП 4
 
 ### Откат изменений
 
-
+```bash
 Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
 $ git status
+
 On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -318,6 +335,78 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+
+On branch main
+nothing to commit, working tree clean
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ cp reports/lab1.md reports/lab1_backup.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ rm reports/lab1.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+
+On branch main
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    reports/lab1.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        reports/lab1_backup.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git restore reports/lab1.md
+
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git status
+
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        reports/lab1_backup.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+ Команда `git restore README.md` возвращает файл к состоянию последнего коммита, удаляя все внесённые изменения. По сути, это откатывает файл так, как будто никакие новые строки или правки никогда не добавлялись, похоже на использование Отменить (Ctrl+Z) для всего документа сразу.
+  
+  Я сохранила изменения перед восстановлением, в результате чего потеряла обновленный отчет.
+
+# ЭТАП 5
+
+### Ветвление версий
+```bash
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git branch
+* main
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (main)
+$ git checkout -b lab1-1
+Switched to a new branch 'lab1-1'
+
+Judy Banda@DESKTOP-V0A7BUM MINGW64 ~/Git-labs (lab1-1)
+$ git branch
+* lab1-1
+  main
+```
+`git branch` показывает все ветки репозитория, где символ * указывает 
+на текущую активную ветку, и в выводе была показана только ветка * main.
+
+`git checkout -b lab1-1` создала новую ветку lab1-1 и автоматически 
+переключилась на неё, вывод показал: Switched to a new branch 'lab1-1'.
 
 
 
