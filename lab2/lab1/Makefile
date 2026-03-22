@@ -1,33 +1,44 @@
-# Compiler settings
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -g
+CXXFLAGS = -g -Wall
 
-# Default target
-all: build/debug.out
+# Source files
+SRC = src/main.cpp src/rect.cpp src/my_string.cpp src/barrel.cpp src/text_wrapper.cpp src/matrix.cpp
 
 # Object files
-build/rect.o: src/rect.cpp src/rect.hpp
-	$(CXX) $(CXXFLAGS) -c -o build/rect.o src/rect.cpp
+OBJ = build/rect.o build/my_string.o build/barrel.o build/text_wrapper.o build/matrix.o
 
-build/my_string.o: src/my_string.cpp src/my_string.hpp
-	$(CXX) $(CXXFLAGS) -c -o build/my_string.o src/my_string.cpp
+# Final executable
+TARGET = build/debug.out
 
-build/barrel.o: src/barrel.cpp src/barrel.hpp
-	$(CXX) $(CXXFLAGS) -c -o build/barrel.o src/barrel.cpp
+# Default target
+all: $(TARGET)
 
-build/matrix.o: src/matrix.cpp src/matrix.hpp
-	$(CXX) $(CXXFLAGS) -c -o build/matrix.o src/matrix.cpp
+# Link executable
+$(TARGET): $(OBJ) src/main.cpp
+	$(CXX) $(CXXFLAGS) -o $(TARGET) src/main.cpp $(OBJ)
 
-build/text_wrapper.o: src/text_wrapper.cpp src/text_wrapper.hpp
-	$(CXX) $(CXXFLAGS) -c -o build/text_wrapper.o src/text_wrapper.cpp
+# Pattern rule for .o files
+build/%.o: src/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-build/debug.out: build/rect.o build/my_string.o build/barrel.o build/matrix.o build/text_wrapper.o
-	$(CXX) $(CXXFLAGS) -o build/debug.out src/main.cpp build/rect.o build/my_string.o build/barrel.o build/matrix.o build/text_wrapper.o
+# Debug target
+debug: $(TARGET)
+	gdb $(TARGET)
 
-debug: build/debug.out
-	gdb build/debug.out
+# Memory leak target
+build/leaks.out: $(OBJ) src/main.cpp
+	$(CXX) -g -fsanitize=address -o build/leaks.out src/main.cpp $(OBJ)
 
+leaks: build/leaks.out
+	./build/leaks.out < input.txt
+	# or use valgrind: valgrind ./build/leaks.out < input.txt
+
+# Clean build files
 clean:
-	rm -rf build
-
-.PHONY: all debug clean
+	rm -f build/*.o build/*.out
+# Improvements:
+# - Used variables (CXX, CXXFLAGS) to simplify changes
+# - Used pattern rules (build/%.o) to avoid repeating code
+# - Added 'clean' target to remove build files
+# - Reduced duplication and improved readability
