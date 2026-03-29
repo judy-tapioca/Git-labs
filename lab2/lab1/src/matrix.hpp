@@ -10,6 +10,7 @@ public:
  
   Matrix(const Matrix &other);
 
+  // TODO: what is the difference between this operator and copy c-tor?
   Matrix &operator=(const Matrix &other);
 
   ~Matrix();

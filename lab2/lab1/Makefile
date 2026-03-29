@@ -42,3 +42,5 @@ clean:
 # - Used pattern rules (build/%.o) to avoid repeating code
 # - Added 'clean' target to remove build files
 # - Reduced duplication and improved readability
+build/test_rect_basic_methods.out: src/rect.cpp tests/test_rect_basic_methods.cpp
+	$(CXX) $(CXXFLAGS) -o build/test_rect_basic_methods.out tests/test_rect_basic_methods.cpp src/rect.cpp

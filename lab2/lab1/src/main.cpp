@@ -51,6 +51,21 @@
 
 Rect bounding_rect(Rect r1, Rect r2);
 
+class Example {
+    MyString s1;
+
+public:
+    void set_str(const char *s) { s1.set_new_string(s); }
+};
+
+void test() {
+    Example ex; // implicit default c-tor called
+    // TODO: will in ex.s1 be garbage?
+    ex.set_str("test string");
+    Example ex2 = ex;
+    // TODO: will all this operations work correctly? 
+} // TODO: will there be memory leaks?
+
 
 int main()
 {
@@ -169,6 +184,7 @@ int main()
             }
         }
         delete pR;  
+        // TODO: write when d-tors are called here (in comments)
     } 
 
     /**
@@ -280,6 +296,7 @@ int main()
      */
 
     {
+    // TODO: write what c-tors are called in this block and explain why?
     Rect r1(0, 10, 0, 10), r2(5, 15, 5, 15);
     Rect r3 = bounding_rect(r1, r2);
     print_rect(r3);

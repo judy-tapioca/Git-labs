@@ -48,6 +48,8 @@ void TextWrapper::short_word() const {
     std::cout << std::endl; // move to new line after looping finishes
 }
 
+// TODO: splitting by words: do not break words
+
 // print word that is too long — split across lines
 void TextWrapper::long_word() {
     charIndex = 0; // ensures start to from the beginning of the line (resets the cursor back to the beginning of the text)

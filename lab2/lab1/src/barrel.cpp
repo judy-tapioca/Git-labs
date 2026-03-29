@@ -12,13 +12,12 @@ double Barrel::get_alcohol_concentration() const {
   return (alcohol_volume / liquid_volume) * 100.0;
 }
 
-/**
- * Encapsulated Logic: This method manages the complex interaction between
- * two Barrel objects while hiding the volume tracking details from the user.
- */
+
 void Barrel::transfer_from(Barrel &other, double volume) {
   if (volume > other.liquid_volume)
     volume = other.liquid_volume;
+  
+  // TODO: add checks that assure that capacity is not overflown
 
   double alcohol_transferred =
       (other.alcohol_volume / other.liquid_volume) * volume;
@@ -26,6 +25,6 @@ void Barrel::transfer_from(Barrel &other, double volume) {
   other.alcohol_volume -= alcohol_transferred;
   other.liquid_volume -= volume;
 
-  this->alcohol_volume += alcohol_transferred;
-  this->liquid_volume += volume;
+  this->alcohol_volume += alcohol_transferred; // this barrel gains the alcohol that left other
+  this->liquid_volume += volume;// this barrel gains the total liquid
 }

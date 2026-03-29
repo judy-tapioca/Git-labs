@@ -2,6 +2,8 @@
 #include <cstring>
 #include <iostream>
 
+// TODO: make sure that you do not allocate dynamic memory for empty string 
+
 MyString::MyString() : data(nullptr), len(0) {
   data = new char[1];
   data[0] = '\0';
