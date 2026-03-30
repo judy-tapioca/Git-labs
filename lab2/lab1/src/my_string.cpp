@@ -10,14 +10,14 @@ MyString::MyString() : data(nullptr), len(0) {
 }
 
 MyString::MyString(const char *str) {
-  if (str) {  //checks if str is not null
+   if (str && str[0] != '\0') { //checks if str is not null
     len = std::strlen(str);
     data = new char[len + 1];
     std::strcpy(data, str);
   } else {
     len = 0;
-    data = new char[1];
-    data[0] = '\0';
+    data =nullptr;
+    //data[0] = '\0';
   }
 }
 
