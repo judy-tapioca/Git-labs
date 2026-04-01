@@ -3,22 +3,31 @@
 #include <iostream>
 
  
-Rect::Rect() {
+/**Rect::Rect() {
     left   = 0;
     right  = 0;
     top    = 0;
     bottom = 0;
     std::cout << "Default constructor called for " << this << std::endl;
 }
-
-
-Rect::Rect(int left, int right, int top, int bottom) {
+*/
+Rect::Rect() : Rect(0, 0, 0, 0) {
+    std::cout << "Default constructor called for " << this << std::endl;
+}
+/**Rect::Rect(int left, int right, int top, int bottom) {
     this->left   = left;
     this->right  = right;
     this->top    = top;
     this->bottom = bottom;
     std::cout << "Parameterized constructor called for " << this << std::endl;
 }
+*/
+
+Rect::Rect(int left, int right, int top, int bottom)
+    : left(left), right(right), top(top), bottom(bottom) {
+    std::cout << "Parameterized constructor called for " << this << std::endl;
+}
+
 
 Rect::Rect(const Rect &other) 
     : left(other.left), right(other.right), top(other.top), bottom(other.bottom) {
@@ -45,13 +54,16 @@ void Rect::set_all(int left, int right, int top, int bottom) {
     this->bottom = bottom;
 }
 
-
 void Rect::inflate(int amount) {
+    inflate(amount, amount, amount, amount);
+}
+/**void Rect::inflate(int amount) {
     left   -= amount;
     right  += amount;
     top    -= amount;
     bottom += amount;
 }
+*/
 
 void Rect::inflate(int dw, int dh) {
     left   -= dw;
@@ -84,7 +96,7 @@ void Rect::set_width(int width)   { right  = left + width; }
 void Rect::set_height(int height) { bottom = top + height; }
 
 
-Rect bounding_rect(Rect r1, Rect r2) {
+Rect bounding_rect(const Rect& r1, const Rect& r2)  {
     Rect result;
     result.set_all(
         r1.get_left()   < r2.get_left()   ? r1.get_left()   : r2.get_left(),
