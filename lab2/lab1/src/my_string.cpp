@@ -26,14 +26,19 @@ MyString::MyString(const MyString &other) : len(other.len) {
   std::strcpy(data, other.data);
 }
 
+// operator= — same fix
 MyString &MyString::operator=(const MyString &other) {
-  if (this != &other) {
-    delete[] data;
-    len = other.len;
-    data = new char[len + 1];
-    std::strcpy(data, other.data);
-  }
-  return *this;
+    if (this != &other) {
+        delete[] data;
+        len = other.len;
+        if (other.data) {
+            data = new char[len + 1];
+            std::strcpy(data, other.data);
+        } else {
+            data = nullptr; // ✅
+        }
+    }
+    return *this;
 }
 
 MyString::~MyString() { delete[] data; }
@@ -57,8 +62,9 @@ void MyString::set_new_string(const char *str) {
     std::strcpy(data, str);
   } else {
     len = 0;
-    data = new char[1];
-    data[0] = '\0';
+     data = nullptr; //  no allocation
+    //data = new char[1];
+    //data[0] = '\0';
   }
 }
 
@@ -76,8 +82,9 @@ void MyString::read_line() {
     std::strcpy(data, buffer);
   } else {
     len = 0;
-    data = new char[1];
-    data[0] = '\0';
+    data = nullptr; 
+    //data = new char[1];
+    //data[0] = '\0';
   }
 }
 
