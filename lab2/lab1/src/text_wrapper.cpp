@@ -51,7 +51,7 @@ void TextWrapper::short_word() const {
 // TODO: splitting by words: do not break words
 
 // print word that is too long — split across lines
-void TextWrapper::long_word() {
+/*void TextWrapper::long_word() {
     charIndex = 0; // ensures start to from the beginning of the line (resets the cursor back to the beginning of the text)
 
     // keep looping until every character has been printed
@@ -68,5 +68,50 @@ void TextWrapper::long_word() {
         // current line is full (or text ended) — move to the next line
         // then while loop starts again for the next line
         std::cout << std::endl;
+    }*/ 
+   void TextWrapper::long_word() {
+    charIndex = 0;
+
+    while (charIndex < word_lenght) {
+        int charsOnLine = 0;
+
+        // Keep adding words as long as they fit on the current line
+        while (charIndex < word_lenght) {
+            // Find the end of the next word
+            int wordStart = charIndex;
+            while (charIndex < word_lenght && words[charIndex] != ' ') {
+                charIndex++;
+            }
+            int wordLen = charIndex - wordStart;
+
+            // Check if the word fits on the current line
+            // If line is empty, print the word even if it's too long (no choice)
+            if (charsOnLine == 0) {
+                // Print the word character by character
+                for (int i = wordStart; i < wordStart + wordLen; i++) {
+                    std::cout << words[i];
+                }
+                charsOnLine += wordLen;
+            } else if (charsOnLine + 1 + wordLen <= line_width) {
+                // Word fits with a space before it
+                std::cout << ' ';
+                for (int i = wordStart; i < wordStart + wordLen; i++) {
+                    std::cout << words[i];
+                }
+                charsOnLine += 1 + wordLen;
+            } else {
+                // Word doesn't fit — put charIndex back to wordStart and break to next line
+                charIndex = wordStart;
+                break;
+            }
+
+            // Skip the space between words (if any)
+            if (charIndex < word_lenght && words[charIndex] == ' ') {
+                charIndex++;
+            }
+        }
+
+        std::cout << std::endl;
     }
 }
+

@@ -60,11 +60,13 @@ public:
 void test() {
     Example ex; // implicit default c-tor called
     // TODO: will in ex.s1 be garbage?
+    //yes, uninitialized char*is garbage
     ex.set_str("test string");
     Example ex2 = ex;
     // TODO: will all this operations work correctly? 
+    //exe2=exe does a shallow copy, point to the same memory
 } // TODO: will there be memory leaks?
-
+    // yes ,both destructors run on the same pointer
 
 int main()
 {
@@ -106,7 +108,7 @@ int main()
      */
 
     {
-        Rect rect; //implicit constructor,fields are uninitialized they contain garbage values
+        Rect rect; // Constructs (creates) an object of type Rect using the default constructor (It is a constructor call, but it calls an implicit (compiler-generated))
     } 
 
     /**
@@ -174,12 +176,14 @@ int main()
         Rect *pR = new Rect(1,2,1,2);   
         {
             Rect r2(r1);
-            Rect arRect[2];
+            Rect arRect[2]; //array of two rect objects,called two times
             for(int i = 0; i < 3; i++)
             {
-                static Rect r3 (i,i,i,i) ;
-                Rect r4(*pR);
-                Rect r5(i,i,i,i);
+                static Rect r3 (i,i,i,i);//static local variable is called constructed only once,at i=0 and destructor called once at program termination
+                Rect r4(*pR); //copy constructor called 3 times, each r4 destroyed at the end of each loop iteration.
+                             
+                Rect r5(i,i,i,i);//Parameterized constructor called every iteration
+                                 // loops three times so called thre times and each r5 destroyed at end of iteration
                 // DTOR: r5 destroyed here (end of loop iteration)
                 // DTOR: r4 destroyed here (end of loop iteration)
                 
@@ -187,12 +191,12 @@ int main()
          // DTOR: arRect[1] destroyed here (end of inner scope)
         // DTOR: arRect[0] destroyed here (end of inner scope)
         // DTOR: r2 destroyed here (end of inner scope)
-        // NOTE: r3 is static — NOT destroyed here!
+        
         }
-        delete pR;  
-        // TODO: write when d-tors are called here (in comments)
-        // DTOR: *pR destroyed here (explicit delete)
+        delete pR;   // DTOR: *pR destroyed here (explicit delete)
 
+        // TODO: write when d-tors are called here (in comments)
+        
     }   // DTOR: r1 destroyed here (end of outer scope)
         // DTOR: r3 destroyed at program exit (static lifetime)
 
@@ -306,22 +310,17 @@ int main()
 
     {
     // TODO: write what c-tors are called in this block and explain why?
-    // Rect r1(0, 10, 0, 10)  → PARAM ctor for r1
-    // Rect r2(5, 15, 5, 15)  → PARAM ctor for r2
+    // r1 and r2 are created using the constructor with 4 parameters
+    // Rect r1(0, 10, 0, 10)  parammetrized contructor  for r1
+    // Rect r2(5, 15, 5, 15)   parameterized contructor for r2
     Rect r1(0, 10, 0, 10), r2(5, 15, 5, 15);
-    // bounding_rect takes r1 and r2 BY VALUE:
-//   → COPY ctor for parameter copy of r1
-//   → COPY ctor for parameter copy of r2
-//    bounding_rect returns Rect BY VALUE:
-//   → PARAM ctor for the local result rect inside bounding_rect
-//   → (possible) COPY ctor when returning — but compiler likely
-//     applies RVO (Return Value Optimization), constructing r3
-//     directly, so this copy may be elided
-// Rect r3 = ...  → constructed in-place via RVO (no extra copy)
+    // bounding_rect takes r1 and r2 by const reference, so no copies are made
+    // Inside bounding_rect a local Rect result is created using the default constructor
+    // When returning, the compiler usually uses NRVO, so no copy constructor is called
     Rect r3 = bounding_rect(r1, r2);
-    // print_rect takes Rect BY REFERENCE → NO ctor called
+        // print_rect takes r3 by reference, so no constructor is called
     print_rect(r3);
-    }
+    }    // At the end of this block destructors are called for r3, r2, and r1
 
 
     /**

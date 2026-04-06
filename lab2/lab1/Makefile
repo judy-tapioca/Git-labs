@@ -1,6 +1,7 @@
 CXX = g++
 CXXFLAGS = -g -Wall
 
+//It links all .o files and main.cpp into one executable
 OBJ = build/rect.o build/my_string.o build/barrel.o build/text_wrapper.o build/matrix.o
 TARGET = build/debug.out
 

@@ -17,8 +17,9 @@ private:
 
   
    public:
-   Rect(); //  i added a default constructor,to fix the error caused by the default constructor
-   Rect(int left, int right, int top, int bottom); // Parameterized constructor — accepts 4 coordinates
+   Rect(); //  i added a default constructor,to fix the error caused by the missing default constructor,Rect rect had nothing to call.
+           // because when added my explicit contructor c++ stopped generating the implicit constructor automatically
+   Rect(int left, int right, int top, int bottom); // Parameterized constructor — accepts 4 coordinates (explicit)
    Rect(const Rect &other); // Creates a copy of another rectangle
    ~Rect();  // Called when rectangle is destroyed(when it goes out the scoop)
 
@@ -51,7 +52,7 @@ private:
   //void inflate(int dw, int dh);//Expands by different amounts horizontally and vertically
   //void inflate(int d_left, int d_right, int d_top, int d_bottom);//
 
-  void inflate(int amount);
+void inflate(int amount);
 void inflate(int dw, int dh);
 void inflate(int d_left, int d_right, int d_top, int d_bottom);
 

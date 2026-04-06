@@ -39,7 +39,7 @@ Rect::Rect(int left, int right, int top, int bottom)
               << " from " << &other << std::endl;
 }
 */
-Rect::Rect(const Rect &other)
+Rect::Rect(const Rect &other) //It creates a new object by copying from an existing object (other)
     : left(other.left), top(other.top), width(other.width), height(other.height) {
     std::cout << "Copy constructor called for " << this
               << " from " << &other << std::endl;
