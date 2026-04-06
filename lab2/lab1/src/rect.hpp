@@ -68,5 +68,6 @@ void move(int dx, int dy = 0);
  
 void print_rect( const Rect &r);
 Rect bounding_rect(const Rect& r1, const Rect& r2);
+// Rect bounding_rect(Rect r1, Rect r2);
    
 #endif 

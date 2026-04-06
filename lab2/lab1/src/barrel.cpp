@@ -17,7 +17,7 @@ void Barrel::transfer_from(Barrel &other, double volume) {
   if (volume > other.liquid_volume)
     volume = other.liquid_volume;
   
-  // TODO: add checks that assure that capacity is not overflown
+  // (done) TODO: add checks that assure that capacity is not overflown
   //Check that capacity is not overflown
     double available_space = capacity - liquid_volume;
     if (volume > available_space)

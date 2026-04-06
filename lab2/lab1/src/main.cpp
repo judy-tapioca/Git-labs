@@ -57,6 +57,7 @@ public:
     void set_str(const char *s) { s1.set_new_string(s); }
 };
 
+// TODO: run in debugger to make sure
 void test() {
     Example ex; // implicit default c-tor called
     // TODO: will in ex.s1 be garbage?
@@ -68,6 +69,17 @@ void test() {
 } // TODO: will there be memory leaks?
     // yes ,both destructors run on the same pointer
 
+
+void test_pass_by_value(MyString s1) {
+ s1.set_new_string("test2");
+}
+
+void foo() {
+ MyString s1 = "123";
+ test_pass_by_value(s1);
+ s1.print(); // TODO: what will be the value of s1 here? Why?
+}
+ 
 int main()
 {
     /**
@@ -195,7 +207,7 @@ int main()
         }
         delete pR;   // DTOR: *pR destroyed here (explicit delete)
 
-        // TODO: write when d-tors are called here (in comments)
+        // (done) TODO: write when d-tors are called here (in comments)
         
     }   // DTOR: r1 destroyed here (end of outer scope)
         // DTOR: r3 destroyed at program exit (static lifetime)
@@ -309,7 +321,7 @@ int main()
      */
 
     {
-    // TODO: write what c-tors are called in this block and explain why?
+    // (done) TODO: write what c-tors are called in this block and explain why?
     // r1 and r2 are created using the constructor with 4 parameters
     // Rect r1(0, 10, 0, 10)  parammetrized contructor  for r1
     // Rect r2(5, 15, 5, 15)   parameterized contructor for r2
@@ -518,8 +530,10 @@ int main()
      */
 
      {
+        std::cout << "Task 2.4" << std::endl;
         int line_width = 40;
         MyString input;
+        // TODO: does it work?
         input.read_line();
         TextWrapper wrapper(input, line_width);
         wrapper.print_wrapped();
