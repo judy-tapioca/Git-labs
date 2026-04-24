@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build in WSL",
+      "type": "shell",
+      "command": "wsl make build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Debug",
+      "type": "shell",
+      "command": "wsl ./build/debug/myapp",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Release",
+      "type": "shell",
+      "command": "wsl ./build/release/myapp",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "wsl make test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
