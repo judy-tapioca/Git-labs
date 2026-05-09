@@ -1,0 +1,29 @@
+name: CMake CI-CD Pipeline
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install -y cmake g++ make
+
+    - name: Configure CMake
+      run: cmake -S cmake_lab -B cmake_lab/build
+
+    - name: Build Project
+      run: cmake --build cmake_lab/build
+
+    - name: Run Tests
+      run: |
+        cd cmake_lab/build
+        ctest --output-on-failure
