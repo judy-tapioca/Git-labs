@@ -40,6 +40,6 @@ int main()
 
     cout << "PASSED: all operations methods are working" << endl;
 
-    int forceFailure = 1/0;
+    
     return 0;
 }
