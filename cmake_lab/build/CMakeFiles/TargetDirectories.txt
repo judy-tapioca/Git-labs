@@ -1,9 +1,0 @@
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/CMakeFiles/DataLogic.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/CMakeFiles/lab1.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/CMakeFiles/RUN_TESTS.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/tests/CMakeFiles/test_bounding_rect.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/tests/CMakeFiles/test_rect_basic.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/tests/CMakeFiles/test_rect_operations.dir
-C:/Users/Judy Banda/Git-labs/cmake_lab/build/tests/CMakeFiles/RUN_TESTS.dir

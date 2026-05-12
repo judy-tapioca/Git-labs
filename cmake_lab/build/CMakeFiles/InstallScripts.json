@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"C:/Users/Judy Banda/Git-labs/cmake_lab/build/cmake_install.cmake",
-		"C:/Users/Judy Banda/Git-labs/cmake_lab/build/tests/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
