@@ -36,7 +36,7 @@ Kubuntu использует APT и графический менеджер Disc
 | Обновление | sudo apt update && sudo apt upgrade |
 | Удаление | sudo apt remove <имя_пакета> |
 
-![Package Manager Tools](images/lab4_tools.jpeg)
+![Package Manager Tools](../images/lab4_tools.jpeg)
 
 ## 3. Минимальные системные требования
 
@@ -47,7 +47,7 @@ Kubuntu использует APT и графический менеджер Disc
 | CPU | 2 GHz dual core |
 | Display | 1024x768 |
 
-![System Resources (htop)](images/lab4_htop.jpeg)
+![System Resources (htop)](../images/lab4_htop.jpeg)
 
 ## 4. Установка ОС
 
@@ -58,9 +58,9 @@ Kubuntu использует APT и графический менеджер Disc
 - Disk Size: 25 GB
 - OS: Ubuntu 64-bit
 
-![VM Settings](images/lab4_vm_settings.png)
+![VM Settings](../images/lab4_vm_settings.png)
 
-![Kubuntu Running](images/lab4_running.jpeg)
+![Kubuntu Running](../images/lab4_running.jpeg)
 
 ### Загрузка образа
 Был загружен образ Kubuntu 24.04.4 LTS с официального сайта kubuntu.org
